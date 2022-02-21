@@ -1,2 +1,7 @@
 <app-shopping-edit></app-shopping-edit>
-<p>Shopping List</p>
+<ul class="list-group">
+    <a 
+    class="list-group-item pe-auto"
+    *ngFor="let ingredient of ingredients"
+    >{{ ingredient.name }} ({{ ingredient.amount }})</a>
+</ul>
