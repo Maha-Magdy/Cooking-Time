@@ -9,10 +9,10 @@
             (window:resize)="collapsed = true">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Recipes</a>
+                    <a class="nav-link" [ngClass]="loadedFeature == 'recipe' ? 'active' : ''" aria-current="page" href="#" (click)="onSelect('recipe')">Recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shopping List</a>
+                    <a class="nav-link" [ngClass]="loadedFeature == 'shopping-list' ? 'active' : ''" href="#" (click)="onSelect('shopping-list')">Shopping List</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

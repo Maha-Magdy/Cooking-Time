@@ -1,1 +1,9 @@
-<p>recipe-item works!</p>
+<a href="#" class="list-group-item d-md-flex justify-content-md-between" (click)="onRecipeSelected()">
+    <div>
+        <h4>{{ recipe.name }}</h4>
+        <p>{{ recipe.description }}</p>
+    </div>
+    <span>
+        <img [src]="recipe.imagePath" [alt]="recipe.name" class="img-fluid recipe-img">
+    </span>
+</a>
