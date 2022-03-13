@@ -10,31 +10,34 @@ export class ShoppingListService {
     new Ingredient('Tomato', 10),
   ];
 
-  getIngredients() {
+  getIngredients(): Ingredient[] {
     return this.ingredients.slice();
   }
 
-  addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+  addIngredient(ingredient: Ingredient): void {
+    this.handleAddingIngredient(ingredient);
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
-  addIngredients(ingredients: Ingredient[]) {
+  addIngredients(ingredients: Ingredient[]): void {
     ingredients.forEach((ingredient) => {
-      let isIngredientExist = false;
+      this.handleAddingIngredient(ingredient);
+    });
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
-      this.ingredients.forEach((item) => {
-        if (ingredient.name === item.name) {
-          isIngredientExist = true;
-          item.amount += ingredient.amount;
-        }
-      });
+  handleAddingIngredient(ingredient: Ingredient): void {
+    let isIngredientExist = false;
 
-      if (!isIngredientExist) {
-        this.ingredients.push(ingredient);
+    this.ingredients.forEach((item) => {
+      if (ingredient.name === item.name) {
+        isIngredientExist = true;
+        item.amount += ingredient.amount;
       }
     });
 
-    this.ingredientsChanged.next(this.ingredients.slice());
+    if (!isIngredientExist) {
+      this.ingredients.push(ingredient);
+    }
   }
 }
